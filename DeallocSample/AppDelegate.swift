@@ -37,7 +37,6 @@ final class RootCoordinator: NavigationCoordinator<RootRoute> {
         super.init(initialRoute: .home)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            // Push .list onto .home
             self?.trigger(.list)
         }
     }
@@ -70,8 +69,8 @@ final class ListCoordinator: NavigationCoordinator<ListRoute> {
         
         trigger(.list)
         
+        // Change this line's dispatch time to `.now() + 1.0` to avoid the bug:
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            // Push .list onto .home
             self?.trigger(.profile)
         }
     }
